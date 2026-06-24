@@ -1,18 +1,17 @@
-# H5-act - 抽奖活动 H5 前端
+# H5-act 抽奖活动前端
 
-## 项目结构
-- Webstudio 可视化拖拽页面
-- Strapi Headless CMS 提供 API
-- Vercel 部署
+**Vercel 已部署完成**
 
-## 快速开始
-1. 在 Webstudio 中设计抽奖页面
-2. 导出静态站点
-3. 配置 Strapi API URL
-4. Push 到 GitHub 触发 Vercel 自动部署
+## 当前版本功能
+- 支持活动 A / B 切换
+- 支持主题 1 / 2 切换（不同色彩风格）
+- 实时奖品池展示
+- 权重抽奖逻辑
+- 中奖弹窗 + 领取流程
+- 模拟 Strapi API 数据
 
-## 演示
-访问 index.html 测试抽奖功能。
+## 与 Strapi 集成
+后续可将 `prizePools` 替换为真实 Strapi REST API 调用。
 
 ## 部署
-在 Vercel 中 Import 此仓库即可自动部署。
+Vercel 已自动部署。更新代码后自动触发重新部署。
