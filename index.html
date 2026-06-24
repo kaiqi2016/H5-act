@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖活动 H5 - 主题1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&amp;display=swap');
+        body {
+            font-family: 'Noto Sans SC', system-ui, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        h1 { font-size: 2.8rem; margin-bottom: 10px; }
+        .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 30px; }
+        .lottery-box {
+            background: white;
+            color: #333;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .prize {
+            font-size: 3rem;
+            margin: 20px 0;
+            color: #ff6b6b;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+        }
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255,107,107,0.6);
+        }
+        .themes {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .theme-btn {
+            padding: 10px 20px;
+            border: 2px solid white;
+            border-radius: 30px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .theme-btn.active {
+            background: white;
+            color: #764ba2;
+        }
+        .footer { margin-top: 40px; opacity: 0.7; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 抽奖活动</h1>
+        <p class="subtitle">活动A - 主题1 / 主题2<br>活动B - 主题1 / 主题2</p>
+        
+        <div class="lottery-box">
+            <h2>当前主题1</h2>
+            <div class="prize" id="prize-display">🎁 等待抽奖...</div>
+            <button onclick="startLottery()">🎲 立即抽奖</button>
+            
+            <div class="themes">
+                <button class="theme-btn active" onclick="switchTheme(1)">主题1</button>
+                <button class="theme-btn" onclick="switchTheme(2)">主题2</button>
+            </div>
+        </div>
+        
+        <p class="footer">由 Budibase 运营后台配置 + Strapi API 驱动<br>支持拖拽配置实时更新</p>
+    </div>
+
+    <script>
+        let currentTheme = 1;
+        
+        function switchTheme(theme) {
+            currentTheme = theme;
+            document.querySelectorAll('.theme-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', i + 1 === theme);
+            });
+            
+            const prizeEl = document.getElementById('prize-display');
+            if (theme === 1) {
+                prizeEl.innerHTML = '🎁 等待抽奖...';
+                prizeEl.style.color = '#ff6b6b';
+            } else {
+                prizeEl.innerHTML = '🎈 等待抽奖...';
+                prizeEl.style.color = '#4ecdc4';
+            }
+        }
+        
+        function startLottery() {
+            const prizeEl = document.getElementById('prize-display');
+            prizeEl.innerHTML = '⚡ 正在抽奖中...';
+            
+            setTimeout(() => {
+                const prizes = ['🎁 一等奖', '🎉 二等奖', '🎈 三等奖', '🎊 感谢奖'];
+                const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+                prizeEl.innerHTML = randomPrize;
+                prizeEl.style.color = currentTheme === 1 ? '#ff6b6b' : '#4ecdc4';
+                
+                // 模拟 Strapi 数据更新
+                console.log('%c[模拟] 抽奖结果已保存到 Strapi', 'color:#4ecdc4');
+            }, 1200);
+        }
+        
+        // 初始化
+        console.log('%c[H5-act] 项目已加载 - 支持多主题抽奖', 'color:#667eea');
+    </script>
+</body>
+</html>

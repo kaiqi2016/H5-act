@@ -1,0 +1,9 @@
+{
+  "name": "h5-act",
+  "version": "1.0.0",
+  "description": "抽奖活动 H5 前端 - Webstudio + Strapi",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site ready for Vercel'"
+  }
+}
