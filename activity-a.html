@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动A - 新年福利抽奖 | H5-act</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .theme-bg { transition: background-image 0.6s ease; background-size: cover; background-position: center; }
+        .prize-card { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-950 text-white">
+    <div id="main-bg" class="min-h-screen theme-bg" style="background-image: url('assets/theme1/bg.jpg');">
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-8">
+                <a href="index.html" class="flex items-center gap-x-2 text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-arrow-left"></i> 返回选择
+                </a>
+                <div class="flex items-center gap-x-3">
+                    <span class="px-4 py-1.5 bg-emerald-500/10 text-emerald-400 text-sm font-bold rounded-3xl">活动A</span>
+                    <span class="text-xl font-bold">新年福利抽奖</span>
+                </div>
+            </div>
+
+            <!-- Theme Switcher -->
+            <div class="flex justify-center gap-4 mb-8">
+                <button onclick="switchTheme(1)" class="theme-btn px-8 py-3 rounded-3xl font-medium border-2 border-indigo-500 bg-indigo-500/10 text-indigo-400" id="btn-theme1">
+                    <i class="fa-solid fa-microchip mr-2"></i> 科技蓝主题
+                </button>
+                <button onclick="switchTheme(2)" class="theme-btn px-8 py-3 rounded-3xl font-medium border-2 border-pink-500 hover:bg-pink-500/10 text-pink-400" id="btn-theme2">
+                    <i class="fa-solid fa-heart mr-2"></i> 温暖粉主题
+                </button>
+            </div>
+
+            <!-- Lottery Content -->
+            <div class="max-w-2xl mx-auto text-center">
+                <h1 class="text-5xl font-bold tracking-tight mb-4">新年大奖等你拿</h1>
+                <p class="text-xl text-white/70 mb-10">科技蓝主题 • 已有 128,439 人参与</p>
+
+                <div class="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-10 mb-8">
+                    <div class="text-8xl mb-6">🎁</div>
+                    <button onclick="drawPrize()" 
+                            class="w-full py-6 text-2xl font-extrabold bg-white text-slate-900 rounded-3xl active:scale-[0.985] transition-all">
+                        立即抽奖
+                    </button>
+                </div>
+
+                <div class="text-sm text-white/50">每人每日可抽 3 次 • 中奖后系统自动发放</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentTheme = 1;
+
+        function switchTheme(theme) {
+            currentTheme = theme;
+            const bg = document.getElementById('main-bg');
+            const btn1 = document.getElementById('btn-theme1');
+            const btn2 = document.getElementById('btn-theme2');
+
+            if (theme === 1) {
+                bg.style.backgroundImage = "url('assets/theme1/bg.jpg')";
+                btn1.classList.add('border-indigo-500', 'bg-indigo-500/10', 'text-indigo-400');
+                btn2.classList.remove('border-pink-500', 'bg-pink-500/10', 'text-pink-400');
+                btn2.classList.add('border-pink-500', 'hover:bg-pink-500/10');
+            } else {
+                bg.style.backgroundImage = "url('assets/theme2/bg.jpg')";
+                btn2.classList.add('border-pink-500', 'bg-pink-500/10', 'text-pink-400');
+                btn1.classList.remove('border-indigo-500', 'bg-indigo-500/10', 'text-indigo-400');
+            }
+        }
+
+        function drawPrize() {
+            const prizes = ['iPhone 16', '华为手机', '888元红包', '幸运签'];
+            const prize = prizes[Math.floor(Math.random() * prizes.length)];
+            alert(`🎉 恭喜你！中了：${prize}`);
+        }
+
+        // Init with Theme 1
+        window.onload = () => {
+            document.getElementById('btn-theme1').classList.add('border-indigo-500', 'bg-indigo-500/10', 'text-indigo-400');
+        };
+    </script>
+</body>
+</html>
